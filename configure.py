@@ -10,22 +10,22 @@ def update_ssh_config(ssh_config_path, cluster_name, cluster_jump, cluster_user,
     if not f"Host {cluster_jump}" in f.read():
       print(f"  - Adding jump host {cluster_jump}\n")
       f.write(f"Host {cluster_jump}\n"
-        f"    SendEnv {cluster_name}_VSC_LAUNCH\n"
-        f"    User {cluster_user}\n"
-        f"    ForwardX11Trusted yes\n"
-        f"    ForwardAgent yes\n")
+        f"     SendEnv {cluster_name}_VSC_LAUNCH\n"
+        f"     User {cluster_user}\n"
+        f"     ForwardX11Trusted yes\n"
+        f"     ForwardAgent yes\n")
     else:
       print(f"  - Job submission host {cluster_jump}-job already in config")
     f.seek(0)
     if not f"Host {cluster_name.lower()}-job\n" in f.read():
       print(f"  - Adding job submission host {cluster_name.lower()}-job\n")
       f.write(f"Host {cluster_name.lower()}-job\n"
-        f"    RequestTTY force\n"
-        f"    User {cluster_user}\n"
-        f"    UserKnownHostsFile=/dev/null\n"
-        f"    ForwardAgent yes\n"
-        f"    StrictHostKeyChecking no\n"
-        f"    ProxyCommand ssh {cluster_jump} vscode-launch.sh\n")
+        f"     RequestTTY force\n"
+        f"     User {cluster_user}\n"
+        f"     UserKnownHostsFile=/dev/null\n"
+        f"     ForwardAgent yes\n"
+        f"     StrictHostKeyChecking no\n"
+        f"     ProxyCommand ssh {cluster_jump} vscode-launch.sh\n")
     else:
       print(f"  - Job submission host {cluster_name.lower()}-job already in config")
 
@@ -62,7 +62,7 @@ def read_user_input():
   cluster_name = input("Name of cluster (Refer to Cluster Documentation): ")
   cluster_jump = input("Cluster jump node (IP or FQDN): ")
   cluster_user = input("Cluster username (Your login username): ")
-  job_submit_config = os.path.dirname(ssh_config_path) + f'.{cluster_name.lower()}-job-submit'
+  job_submit_config = os.path.dirname(ssh_config_path) + f'/.{cluster_name.lower()}-job-submit'
   return ssh_config_path, cluster_name, cluster_jump, cluster_user, job_submit_config
 
 def configure_env(ssh_config_path, cluster_name, cluster_jump, cluster_user, job_submit_config):

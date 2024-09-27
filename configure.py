@@ -45,7 +45,7 @@ def update_shell_env(cluster_name, job_submit_config):
     f.seek(0)
     if not f"export {cluster_name}_VSC_LAUNCH=" in f.read():
       print(f"  - Appending {shell_config_path} with job submission parser and environment setting")
-      f.write(f"""export {cluster_name}_VSC_LAUNCH=$(awk -v ORS=" " '!/^#/ && /=[^\\S\\r\\n]+$/ {{print "--"$0}}' {job_submit_config}\n""")
+      f.write(f"""export {cluster_name}_VSC_LAUNCH=$(awk -v ORS=" " '!/^#/ && /=[^\\S\\r\\n]+$/ {{print "--"$0}}' {job_submit_config})\n""")
     else:
       print(f"  - {shell_config_path} already contains job submission parser and environment setting")
 

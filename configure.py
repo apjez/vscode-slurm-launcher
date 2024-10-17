@@ -165,6 +165,10 @@ def interactive_editor(stdscr,job_submit_config):
         job_submit_file.truncate()
       stdscr.clear()
       stdscr.refresh()
+      curses.nocbreak()
+      stdscr.keypad(0)
+      curses.echo()
+      curses.endwin()
       break
     print_job_opts(stdscr, rows, cols, y_lookup, job_options, job_options_dict)
     stdscr.move(x, y)

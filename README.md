@@ -17,7 +17,8 @@ This repository provides the user tools to launch Slurm jobs on remote clusters 
 - Launch an interactive job via VS Code
   - In VS Code, connect session (either with "Connect to Host" or ssh from terminal) to `cluster_name-job`.
   
-*TIP: IT IS RECOMMENDED THAT YOU USE* `ssh-keygen` *and* `ssh-copy-id` *to use SSH keys for authentication!*
+*TIP: IT IS RECOMMENDED THAT YOU USE* `ssh-keygen` *AND* `ssh-copy-id` *TO USE SSH KEYS FOR AUTHENTICATION!*
+*TIP: YOU MAY NEED TO INCREASE YOUR VS CODE REMOTE SSH TIMEOUT SETTING TO ACCOUNT FOR JOB SCHEDULING TIME (F1 > Remote-SSH: Settings -> Connect Timeout: 60)*
 
 ## Demonstration
 

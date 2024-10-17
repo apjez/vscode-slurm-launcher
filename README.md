@@ -16,3 +16,8 @@ A guided configuration takes as input:
 - Your terminal should update to reflect the allocated compute node.
 
 *TIP: IT IS RECOMMENDED THAT YOU USE* `ssh-keygen` *and* `ssh-copy-id` *to use SSH keys for authentication!*
+
+## Demonstration
+
+![example workflow](vsc-slurm-launcher.gif "Example Workflow")
+

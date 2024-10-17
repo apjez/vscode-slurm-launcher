@@ -1,20 +1,22 @@
 # VS Code Slurm Launcher
 This repository provides the user tools to launch Slurm jobs on remote clusters directly from their local machine. This assumes you have VS Code with the Remote SSH extension installed.
 
-## Installation
-A guided configuration takes as input:
-- **SSH configuration path**: Path to SSH configuration on your local host. If left blank, defaults to standard path (e.g. `~/.ssh/config`).
-- **Cluster name**: This name is defined by cluster admins and should be provided in documentation.
-- **Cluster login node**: Provide either the fully qualified domain name (FQDN, or hostname + DNS domain name) or the IP address of the the login node.
-- **Cluster username**: The username used to access the remote cluster.
+## Requirements
+- [Remote SSH](https://code.visualstudio.com/docs/remote/ssh) extension for VS Code
+- Python `curses` library (should be a standard library on Linux, MacOS - on Windows, install `windows-curses`)
 
-### Linux / macOS
-- Open a terminal in VS Code and run `curl -s https://raw.githubusercontent.com/apjez/vscode-slurm-launcher/refs/heads/main/configure.py -o configure.py && python3 configure.py`
-- Follow the guided setup process. 
-- Open `{cluster_name}-job-submit}` and modify the job submission requests as appropriate. Fields without a defined value and comments are ignored.
-- Choose 'Connect to Host...' or 'Connect Current Window to Host...' and select or type `{cluster_name}-job`.
-- Your terminal should update to reflect the allocated compute node.
-
+## Usage
+- Configure a cluster with `python3 configure.py -c CLUSTER_NAME -j`
+  - The first time, you'll be prompted to enter the cluster login node (IP address or FQDN) and your username
+  - This will add an SSH configuration at the default path called `cluster_name-job`
+  - After the configuration is set up, you'll land in an interactive editor to set job submission options
+- Update job submission options
+  - Run `python3 configure.py -c CLUSTER_NAME -j` again to modify existing job submission options
+    - You can pass a string to the `-j` option to non-interactively modify the job submission options
+    - Alternatively, omit arguments for the `-j` option to enter the interactive editor
+- Launch an interactive job via VS Code
+  - In VS Code, connect session (either with "Connect to Host" or ssh from terminal) to `cluster_name-job`.
+  
 *TIP: IT IS RECOMMENDED THAT YOU USE* `ssh-keygen` *and* `ssh-copy-id` *to use SSH keys for authentication!*
 
 ## Demonstration

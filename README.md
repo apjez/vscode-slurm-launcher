@@ -4,6 +4,8 @@ This repository provides the user tools to launch Slurm jobs on remote clusters 
 ## Requirements
 - [Remote SSH](https://code.visualstudio.com/docs/remote/ssh) extension for VS Code
 - Python `curses` library (should be a standard library on Linux, MacOS - on Windows, install `windows-curses`)
+- Login node with `vscode-job-launch.sh` installed with executable bit set and in a directory included in PATH (i.e. users should be able to run `vscode-job-modify.sh` without an absolute path)
+  -  `SLURM_ROOT` should be updated to reflect the environment on the cluster  
 
 ## Usage
 - Configure a cluster with `python3 configure.py -c CLUSTER_NAME -j`
@@ -17,8 +19,9 @@ This repository provides the user tools to launch Slurm jobs on remote clusters 
 - Launch an interactive job via VS Code
   - In VS Code, connect session (either with "Connect to Host" or ssh from terminal) to `cluster_name-job`.
   
-*TIP: IT IS RECOMMENDED THAT YOU USE* `ssh-keygen` *AND* `ssh-copy-id` *TO USE SSH KEYS FOR AUTHENTICATION!*
-*TIP: YOU MAY NEED TO INCREASE YOUR VS CODE REMOTE SSH TIMEOUT SETTING TO ACCOUNT FOR JOB SCHEDULING TIME (F1 > Remote-SSH: Settings -> Connect Timeout: 60)*
+***TIP:** IT IS RECOMMENDED THAT YOU USE* `ssh-keygen` *AND* `ssh-copy-id` *TO USE SSH KEYS FOR AUTHENTICATION!*
+
+***TIP:** YOU MAY NEED TO INCREASE YOUR VS CODE REMOTE SSH TIMEOUT SETTING TO ACCOUNT FOR JOB SCHEDULING TIME (F1 > Remote-SSH: Settings -> Connect Timeout: 60)*
 
 ## Demonstration
 

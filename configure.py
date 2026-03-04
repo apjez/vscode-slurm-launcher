@@ -35,7 +35,7 @@ def create_ssh_config(cluster_name, ssh_conf_path, job_submit_config):
         f"\tUserKnownHostsFile=/dev/null\n"
         f"\tForwardAgent yes\n"
         f"\tStrictHostKeyChecking no\n"
-        f"\tProxyCommand ssh %r@{cluster_jump} \"{cluster_name}_VSC_LAUNCH=\\\"$(cat {job_submit_config})\\\" vscode-launch.sh\"\n")
+        f"\tProxyCommand ssh %r@{cluster_jump} \"{cluster_name}_VSC_LAUNCH=\\\"$(cat {job_submit_config})\\\" launch.sh\"\n")
     else:
       print(f"  - Job submission host {cluster_name.lower()}-job already in config")
   if not os.path.isfile(job_submit_config):

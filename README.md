@@ -13,16 +13,16 @@ This repository provides the user tools to launch Slurm jobs on remote clusters 
     - Note the path of the newly created key, as it will be needed in the next step (by default, it will be `~/.ssh/id_rsa`)
   - Use `ssh-copy-id -i /path/to/id_rsa username@login-ice.pace.gatech.edu` (replace 'username' with your GT username) to copy the public key to the cluster. When prompted, enter your password and confirm the message indicates success.
   - Attempt to login without a password using `ssh username@login-ice.pace.gatech.edu` (replace 'username' with your GT username). If successful, proceed to the next step.
-- Configure a cluster with `python3 configure.py -c CLUSTER_NAME -j='-c8 --mem=256gb -t0-8 -G1 -CHX00'`
-  - The first time, you'll be prompted to enter the cluster login node (IP address or FQDN) and your username
-  - This will add an SSH configuration at the default path called `cluster_name-job`
+- Configure a cluster with `python3 configure.py -c aims -j='-c8 --mem=256gb -t0-8 -G1 -CHX00'`
+  - The first time, you'll be prompted to enter the cluster login node (`login-ice.pace.gatech.edu`) and your username
+  - This will add an SSH configuration at the default path called `aims-job`
   - This sets the default recommended configuration (8 CPUs, 256GB DRAM, 1 H100 or H200 GPU, 8 hours)
 - Update job submission options
-  - Run `python3 configure.py -c CLUSTER_NAME -j` again to modify existing job submission options
+  - Run `python3 configure.py -c aims -j` again to modify existing job submission options
     - You can pass a string to the `-j` option to non-interactively modify the job submission options
     - Alternatively, omit arguments for the `-j` option to enter the interactive editor
 - Launch an interactive job via VS Code
-  - In VS Code, connect session (either with "Connect to Host" or ssh from terminal) to `cluster_name-job`.
+  - In VS Code, connect session (either with "Connect to Host" or ssh from terminal) to `aims-job`.
 
 ***TIP:** YOU MAY NEED TO INCREASE YOUR VS CODE REMOTE SSH TIMEOUT SETTING TO ACCOUNT FOR JOB SCHEDULING TIME (F1 > Remote-SSH: Settings -> Connect Timeout: 60)*
 

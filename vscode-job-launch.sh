@@ -11,7 +11,7 @@ done
 # Create a random string to append to the job name for mapping
 HASH=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13; echo)
 
-${SLURM_ROOT}/bin/sbatch -J"vscode-${HASH}" ${RG_VSC_LAUNCH} -o %x.out  --wrap "declare -px > /tmp/env.sh; /usr/sbin/sshd -D -p ${PORT} -f /dev/null -h ${HOME}/.ssh/id_rsa"
+${SLURM_ROOT}/bin/sbatch -J"vscode-${HASH}" ${phx_VSC_LAUNCH} -o %x.out  --wrap "declare -px > /tmp/env.sh; /usr/sbin/sshd -D -p ${PORT} -f /dev/null -h ${HOME}/.ssh/id_rsa"
 
 while [[ -z "$(${SLURM_ROOT}/bin/squeue --me --name="vscode-${HASH}" --states=R -h -O NodeList)" ]]; do
   /usr/bin/sleep 5

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLURM_ROOT=/path/to/slurm/install
+SLURM_ROOT=/opt/slurm/current
 
 PORT=$(shuf -i 50000-60000 -n 1);
 while $(nc -zvw2 localhost ${PORT} &> /dev/null)
